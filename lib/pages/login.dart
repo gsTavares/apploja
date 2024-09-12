@@ -1,3 +1,4 @@
+import 'package:apploja/pages/user.dart';
 import 'package:flutter/material.dart';
 
 import '../main.dart';
@@ -55,13 +56,10 @@ class _LoginPageState extends State<LoginPage> {
           const SizedBox(height: 30.0),
           InkWell(
             onTap: () {
-              // Navigator.push(
-
-              //   context,
-
-              // MaterialPageRoute(
-
-              //  builder: (context) => const UserHomePage()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const UserHomePage()));
             },
             child: Container(
               height: 50.0,
