@@ -158,7 +158,7 @@ class _UserHomePageState extends State<UserHomePage> {
               } else {
                 await editUserFirestore(user, _editId);
               }
-              
+
               _fetchUsers();
 
               setState(() {
@@ -169,7 +169,6 @@ class _UserHomePageState extends State<UserHomePage> {
                 _phoneController.clear();
                 _emailController.clear();
               });
-
             } else {
               log("Please enter all fields!");
             }
@@ -204,12 +203,23 @@ class _UserHomePageState extends State<UserHomePage> {
             title: Text(user.name),
             subtitle: Text(
                 "CPF: ${user.cpf}\nEmail: ${user.email}\nPhone: ${user.phone}"),
-            trailing: IconButton(
-              icon: const Icon(Icons.edit),
-              onPressed: () {
-                editUserForm(
-                    user);
-              },
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.edit),
+                  onPressed: () {
+                    editUserForm(user);
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(Icons.delete),
+                  onPressed: () async {
+                    await deleteUserFirestore(user.id!);
+                    _fetchUsers(); // Refresh the list after deletion
+                  },
+                ),
+              ],
             ),
           );
         },
@@ -302,6 +312,18 @@ class _UserHomePageState extends State<UserHomePage> {
       log("User Created");
     } catch (e) {
       log("Error creating user: $e");
+    }
+  }
+
+  Future<void> deleteUserFirestore(String userId) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('usuarios')
+          .doc(userId)
+          .delete();
+      log("User Deleted");
+    } catch (e) {
+      log("Error deleting user: $e");
     }
   }
 

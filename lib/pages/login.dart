@@ -32,30 +32,6 @@ class _LoginPageState extends State<LoginPage> {
           const SizedBox(height: 30.0),
           InkWell(
             onTap: () {
-              //Navigator.push(
-
-              //  context,
-
-              //MaterialPageRoute(
-
-              // builder: (context) => const AdminHomePage()));
-            },
-            child: Container(
-              height: 50.0,
-              width: MediaQuery.of(context).size.width,
-              decoration:
-                  BoxDecoration(border: Border.all(color: MyApp.primaryColor)),
-              child: const Center(
-                child: Text(
-                  "ADMINISTRADOR",
-                  style: TextStyle(fontSize: 16.0),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(height: 30.0),
-          InkWell(
-            onTap: () {
               Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -68,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
                   BoxDecoration(border: Border.all(color: MyApp.primaryColor)),
               child: const Center(
                 child: Text(
-                  "USUÁRIO",
+                  "ADMINISTRADOR",
                   style: TextStyle(fontSize: 16.0),
                 ),
               ),
